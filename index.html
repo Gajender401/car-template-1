@@ -1,0 +1,542 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>DRIVEX — Modern Car Rental & Lease</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'] },
+                    boxShadow: { 'soft': '0 10px 40px -10px rgba(2,6,23,0.15)', 'soft-lg': '0 20px 60px -15px rgba(2,6,23,0.2)' }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { text-rendering: optimizeLegibility; }
+        .glass { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-slate-900 font-sans antialiased">
+    <!-- Header -->
+    <header class="fixed top-0 inset-x-0 z-50">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mt-3 sm:mt-4 glass bg-white/70 border border-white/60 shadow-soft rounded-2xl">
+                <div class="flex items-center justify-between px-4 sm:px-6 h-[64px]">
+                    <a href="#" class="flex items-center gap-2.5">
+                        <div class="w-9 h-9 rounded-xl bg-slate-900 text-white grid place-items-center shadow-lg shadow-slate-900/20">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 11l1.5-4.5h11L19 11m-14 0v6h2v-2h10v2h2v-6M7.5 16.5h.01M16.5 16.5h.01M4 11h16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                        </div>
+                        <span class="text-[22px] font-extrabold tracking-tight">DRIVEX</span>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-8 text-[15px] font-medium text-slate-600">
+                        <a href="#cars" class="hover:text-slate-900 transition">Cars</a>
+                        <a href="#how" class="hover:text-slate-900 transition">How it works</a>
+                        <a href="#lease" class="hover:text-slate-900 transition">Leasing</a>
+                        <a href="#faq" class="hover:text-slate-900 transition">FAQ</a>
+                    </nav>
+                    <div class="flex items-center gap-2.5">
+                        <a href="tel:+18005551234" class="hidden sm:inline-flex h-10 px-4 items-center gap-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-[14px] font-semibold transition">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Support
+                        </a>
+                        <button id="mobileMenuBtn" class="md:hidden h-10 w-10 grid place-items-center rounded-xl border border-slate-200 bg-white">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                        </button>
+                        <a href="#book" class="hidden sm:inline-flex h-10 px-4 items-center rounded-xl bg-slate-900 text-white text-[14px] font-semibold hover:bg-slate-800 shadow-lg shadow-slate-900/20 transition">Book Now</a>
+                    </div>
+                </div>
+                <!-- Mobile Menu -->
+                <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200/70 px-4 pb-4">
+                    <nav class="grid gap-1 py-3 text-[15px] font-medium">
+                        <a href="#cars" class="py-2.5 px-3 rounded-xl hover:bg-slate-100">Cars</a>
+                        <a href="#how" class="py-2.5 px-3 rounded-xl hover:bg-slate-100">How it works</a>
+                        <a href="#lease" class="py-2.5 px-3 rounded-xl hover:bg-slate-100">Leasing</a>
+                        <a href="#faq" class="py-2.5 px-3 rounded-xl hover:bg-slate-100">FAQ</a>
+                        <a href="#book" class="mt-2 h-11 grid place-items-center rounded-xl bg-slate-900 text-white font-semibold">Book Now</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="relative overflow-hidden">
+            <div class="absolute inset-0 -z-10">
+                <div class="absolute inset-0 bg-gradient-to-b from-[#eef2ff] via-[#f8fafc] to-[#F8FAFC]"></div>
+                <div class="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-violet-300/40 to-sky-300/40 blur-3xl"></div>
+                <div class="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-amber-200/40 to-pink-300/40 blur-3xl"></div>
+            </div>
+
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 pb-12 sm:pb-20">
+                <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-[12px] font-semibold text-slate-700">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            Available in 120+ cities
+                        </div>
+                        <h1 class="mt-5 text-[40px] leading-[1.05] sm:text-[56px] lg:text-[64px] font-extrabold tracking-tight">
+                            Rent or Lease.<br/>
+                            <span class="bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">Drive your way.</span>
+                        </h1>
+                        <p class="mt-5 text-[17px] sm:text-[18px] leading-relaxed text-slate-600 max-w-xl">
+                            Simple, clean pricing. Premium cars, instant booking, and flexible leases from 12 months. Optimized for mobile — book in 60 seconds.
+                        </p>
+                        <div class="mt-7 flex items-center gap-5">
+                            <div class="flex -space-x-2">
+                                <img class="w-9 h-9 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100" alt="">
+                                <img class="w-9 h-9 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100" alt="">
+                                <img class="w-9 h-9 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100" alt="">
+                            </div>
+                            <div class="text-sm">
+                                <div class="flex items-center gap-1 text-amber-500">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <span class="font-semibold text-slate-900">4.9/5</span>
+                                </div>
+                                <p class="text-slate-600 -mt-0.5">from 12,400+ drivers</p>
+                            </div>
+                        </div>
+                        <div class="mt-8 hidden sm:flex items-center gap-6 text-[13px] text-slate-600">
+                            <div class="flex items-center gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Full insurance</div>
+                            <div class="flex items-center gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 24/7 roadside</div>
+                            <div class="flex items-center gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> No hidden fees</div>
+                        </div>
+                    </div>
+
+                    <!-- Booking Card -->
+                    <div id="book" class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-tr from-violet-500/10 to-sky-500/10 rounded-[36px] blur-2xl -z-10"></div>
+                        <div class="bg-white rounded-[28px] shadow-soft-lg border border-slate-200/60 p-5 sm:p-6 lg:p-7">
+                            <!-- Tabs -->
+                            <div class="p-1 bg-slate-100 rounded-2xl grid grid-cols-2 gap-1">
+                                <button data-tab="rental" class="tab-btn h-11 rounded-xl font-semibold text-[14px] bg-white shadow-sm text-slate-900">Rental</button>
+                                <button data-tab="lease" class="tab-btn h-11 rounded-xl font-semibold text-[14px] text-slate-600 hover:text-slate-900">Lease</button>
+                            </div>
+
+                            <!-- Rental Form -->
+                            <form id="rentalForm" class="mt-5 grid gap-3.5">
+                                <div class="relative">
+                                    <label class="text-[12px] font-medium text-slate-600 ml-1">Pick-up location</label>
+                                    <div class="mt-1.5 relative">
+                                        <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                        <input required placeholder="Airport, city or address" class="w-full h-[48px] pl-10 pr-3 rounded-xl border border-slate-300 bg-white text-[15px] outline-none focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 transition" />
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3.5">
+                                    <div>
+                                        <label class="text-[12px] font-medium text-slate-600 ml-1">Pick-up</label>
+                                        <input id="pickupDate" type="date" class="mt-1.5 w-full h-[48px] px-3 rounded-xl border border-slate-300 bg-white text-[15px] outline-none focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 transition" />
+                                    </div>
+                                    <div>
+                                        <label class="text-[12px] font-medium text-slate-600 ml-1">Return</label>
+                                        <input id="returnDate" type="date" class="mt-1.5 w-full h-[48px] px-3 rounded-xl border border-slate-300 bg-white text-[15px] outline-none focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 transition" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="text-[12px] font-medium text-slate-600 ml-1">Car type</label>
+                                    <select class="mt-1.5 w-full h-[48px] px-3 rounded-xl border border-slate-300 bg-white text-[15px] outline-none focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 transition">
+                                        <option>Any</option><option>Sedan</option><option>SUV</option><option>Electric</option><option>Luxury</option><option>Van</option>
+                                    </select>
+                                </div>
+                                <button class="mt-2 h-[52px] rounded-xl bg-slate-900 text-white font-semibold text-[15px] hover:bg-slate-800 active:scale-[.99] transition shadow-lg shadow-slate-900/20">Search available cars</button>
+                                <p class="text-center text-[12px] text-slate-500">Free cancellation up to 24 hours before pick-up</p>
+                            </form>
+
+                            <!-- Lease Form -->
+                            <form id="leaseForm" class="mt-5 grid gap-3.5 hidden">
+                                <div class="grid grid-cols-2 gap-3.5">
+                                    <div>
+                                        <label class="text-[12px] font-medium text-slate-600 ml-1">Location</label>
+                                        <input placeholder="City" class="mt-1.5 w-full h-[48px] px-3 rounded-xl border border-slate-300 bg-white text-[15px] outline-none focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 transition" />
+                                    </div>
+                                    <div>
+                                        <label class="text-[12px] font-medium text-slate-600 ml-1">Vehicle</label>
+                                        <select class="mt-1.5 w-full h-[48px] px-3 rounded-xl border border-slate-300 bg-white text-[15px] outline-none focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 transition">
+                                            <option>Any</option><option>Electric</option><option>SUV</option><option>Sedan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3.5">
+                                    <div>
+                                        <label class="text-[12px] font-medium text-slate-600 ml-1">Term</label>
+                                        <select id="leaseTerm" class="mt-1.5 w-full h-[48px] px-3 rounded-xl border border-slate-300 bg-white text-[15px] outline-none focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 transition">
+                                            <option>12 months</option><option selected>24 months</option><option>36 months</option><option>48 months</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="text-[12px] font-medium text-slate-600 ml-1">Miles / year</label>
+                                        <select class="mt-1.5 w-full h-[48px] px-3 rounded-xl border border-slate-300 bg-white text-[15px] outline-none focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 transition">
+                                            <option>10,000</option><option selected>12,000</option><option>15,000</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[13px] text-slate-700 flex items-center justify-between">
+                                    <span>Est. payment</span>
+                                    <span class="font-bold text-slate-900" id="leaseEstimate">$449/mo</span>
+                                </div>
+                                <button class="h-[52px] rounded-xl bg-slate-900 text-white font-semibold text-[15px] hover:bg-slate-800 active:scale-[.99] transition shadow-lg shadow-slate-900/20">See lease deals</button>
+                                <p class="text-center text-[12px] text-slate-500">Maintenance & roadside included</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Logos -->
+        <section class="py-8 border-y border-slate-200/70 bg-white/60">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between gap-6 overflow-x-auto no-scrollbar grayscale opacity-70">
+                    <span class="text-sm font-semibold tracking-widest">TESLA</span>
+                    <span class="text-sm font-semibold tracking-widest">BMW</span>
+                    <span class="text-sm font-semibold tracking-widest">AUDI</span>
+                    <span class="text-sm font-semibold tracking-widest">TOYOTA</span>
+                    <span class="text-sm font-semibold tracking-widest">JEEP</span>
+                    <span class="text-sm font-semibold tracking-widest">PORSCHE</span>
+                    <span class="text-sm font-semibold tracking-widest">RANGE ROVER</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Cars -->
+        <section id="cars" class="py-16 sm:py-24">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex items-end justify-between gap-4">
+                    <div>
+                        <h2 class="text-[28px] sm:text-[36px] font-extrabold tracking-tight">Popular right now</h2>
+                        <p class="mt-2 text-slate-600 max-w-xl">Book daily rentals or switch to monthly leasing with one tap.</p>
+                    </div>
+                    <div class="hidden sm:flex gap-2">
+                        <button data-filter="all" class="filter-btn h-9 px-4 rounded-full bg-slate-900 text-white text-[13px] font-semibold">All</button>
+                        <button data-filter="Electric" class="filter-btn h-9 px-4 rounded-full bg-white border border-slate-200 text-[13px] font-semibold hover:bg-slate-50">Electric</button>
+                        <button data-filter="SUV" class="filter-btn h-9 px-4 rounded-full bg-white border border-slate-200 text-[13px] font-semibold hover:bg-slate-50">SUV</button>
+                        <button data-filter="Sedan" class="filter-btn h-9 px-4 rounded-full bg-white border border-slate-200 text-[13px] font-semibold hover:bg-slate-50">Sedan</button>
+                    </div>
+                </div>
+
+                <div class="sm:hidden mt-4 flex gap-2 overflow-x-auto no-scrollbar pb-1">
+                    <button data-filter="all" class="filter-btn h-9 px-4 rounded-full bg-slate-900 text-white text-[13px] font-semibold whitespace-nowrap">All</button>
+                    <button data-filter="Electric" class="filter-btn h-9 px-4 rounded-full bg-white border border-slate-200 text-[13px] font-semibold whitespace-nowrap">Electric</button>
+                    <button data-filter="SUV" class="filter-btn h-9 px-4 rounded-full bg-white border border-slate-200 text-[13px] font-semibold whitespace-nowrap">SUV</button>
+                    <button data-filter="Sedan" class="filter-btn h-9 px-4 rounded-full bg-white border border-slate-200 text-[13px] font-semibold whitespace-nowrap">Sedan</button>
+                    <button data-filter="Luxury" class="filter-btn h-9 px-4 rounded-full bg-white border border-slate-200 text-[13px] font-semibold whitespace-nowrap">Luxury</button>
+                </div>
+
+                <div id="carGrid" class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"></div>
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section id="how" class="py-16 sm:py-24 bg-white border-y border-slate-200/70">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="max-w-2xl">
+                    <h2 class="text-[28px] sm:text-[36px] font-extrabold tracking-tight">Rent in minutes. Lease in hours.</h2>
+                    <p class="mt-2 text-slate-600">Designed for mobile first. No paperwork at the counter.</p>
+                </div>
+                <div class="mt-10 grid sm:grid-cols-3 gap-5">
+                    <div class="p-6 rounded-3xl border border-slate-200 bg-[#F8FAFC]">
+                        <div class="w-11 h-11 grid place-items-center rounded-2xl bg-slate-900 text-white shadow-lg shadow-slate-900/20">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        </div>
+                        <h3 class="mt-4 font-bold text-[18px]">Choose & customize</h3>
+                        <p class="mt-1.5 text-[14px] text-slate-600">Pick dates, mileage, insurance. See total price upfront.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl border border-slate-200 bg-[#F8FAFC]">
+                        <div class="w-11 h-11 grid place-items-center rounded-2xl bg-slate-900 text-white shadow-lg shadow-slate-900/20">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
+                        </div>
+                        <h3 class="mt-4 font-bold text-[18px]">Book & verify</h3>
+                        <p class="mt-1.5 text-[14px] text-slate-600">Secure checkout with Apple Pay, Google Pay or card. ID check in app.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl border border-slate-200 bg-[#F8FAFC]">
+                        <div class="w-11 h-11 grid place-items-center rounded-2xl bg-slate-900 text-white shadow-lg shadow-slate-900/20">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h-2v-4l2-5h9l2 5v4h-2m-9 0h9M7 17a2 2 0 104 0M13 17a2 2 0 104 0"/></svg>
+                        </div>
+                        <h3 class="mt-4 font-bold text-[18px]">Drive away</h3>
+                        <p class="mt-1.5 text-[14px] text-slate-600">Pick up at location or choose doorstep delivery in select cities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lease -->
+        <section id="lease" class="py-16 sm:py-24">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <h2 class="text-[28px] sm:text-[36px] font-extrabold tracking-tight">Flexible leasing, zero hassle</h2>
+                        <p class="mt-3 text-slate-600 max-w-xl">12–48 month terms. Maintenance, roadside, and registration included. Upgrade anytime.</p>
+                        <ul class="mt-6 space-y-3 text-[15px]">
+                            <li class="flex gap-3"><span class="mt-0.5 text-emerald-600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span> No down payment options</li>
+                            <li class="flex gap-3"><span class="mt-0.5 text-emerald-600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span> Swap cars after 6 months</li>
+                            <li class="flex gap-3"><span class="mt-0.5 text-emerald-600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span> All-electric lineup available</li>
+                        </ul>
+                        <div class="mt-7 flex gap-3">
+                            <a href="#book" class="h-11 px-5 grid place-items-center rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800 shadow-lg shadow-slate-900/20">Check lease price</a>
+                            <a href="#cars" class="h-11 px-5 grid place-items-center rounded-xl border border-slate-300 font-semibold hover:bg-white">Browse lease cars</a>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="aspect-[4/3] rounded-[28px] overflow-hidden shadow-soft-lg border border-slate-200 bg-white">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1616788494707-1e2c2c0b76c8?q=80&w=1600&auto=format" alt="Porsche Taycan" loading="lazy">
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-soft border border-slate-200 p-4 w-[220px]">
+                            <p class="text-[12px] text-slate-500">Starting at</p>
+                            <p class="text-[22px] font-extrabold">$429<span class="text-[14px] font-semibold text-slate-500">/mo</span></p>
+                            <p class="mt-1 text-[12px] text-slate-600">Tesla Model 3 RWD • 24 mo • 12k mi/yr</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-16 sm:py-20 bg-slate-900 text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-[0.08]" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 20px 20px;"></div>
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+                <div class="flex items-end justify-between">
+                    <h2 class="text-[28px] sm:text-[36px] font-extrabold tracking-tight">Loved by drivers</h2>
+                    <div class="flex gap-2">
+                        <button id="tPrev" class="w-9 h-9 grid place-items-center rounded-full bg-white/10 hover:bg-white/20 border border-white/15">‹</button>
+                        <button id="tNext" class="w-9 h-9 grid place-items-center rounded-full bg-white/10 hover:bg-white/20 border border-white/15">›</button>
+                    </div>
+                </div>
+                <div class="mt-8 overflow-hidden">
+                    <div id="tTrack" class="flex transition-transform duration-500 ease-out">
+                        <div class="min-w-full sm:min-w-[50%] lg:min-w-[33.333%] pr-4">
+                            <div class="h-full p-6 rounded-3xl bg-white/5 border border-white/10">
+                                <div class="flex items-center gap-1 text-amber-400">★★★★★</div>
+                                <p class="mt-3 text-[15px] leading-relaxed text-slate-200">“Booked a Model Y in under a minute. Pickup was seamless and the car was spotless.”</p>
+                                <div class="mt-4 flex items-center gap-3"><img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100" alt=""><div><p class="text-sm font-semibold">Maya R.</p><p class="text-xs text-slate-400">San Francisco</p></div></div>
+                            </div>
+                        </div>
+                        <div class="min-w-full sm:min-w-[50%] lg:min-w-[33.333%] pr-4">
+                            <div class="h-full p-6 rounded-3xl bg-white/5 border border-white/10">
+                                <div class="flex items-center gap-1 text-amber-400">★★★★★</div>
+                                <p class="mt-3 text-[15px] leading-relaxed text-slate-200">“Leasing through DRIVEX saved me time and money. Maintenance included is a game changer.”</p>
+                                <div class="mt-4 flex items-center gap-3"><img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=100" alt=""><div><p class="text-sm font-semibold">Daniel K.</p><p class="text-xs text-slate-400">Austin</p></div></div>
+                            </div>
+                        </div>
+                        <div class="min-w-full sm:min-w-[50%] lg:min-w-[33.333%] pr-4">
+                            <div class="h-full p-6 rounded-3xl bg-white/5 border border-white/10">
+                                <div class="flex items-center gap-1 text-amber-400">★★★★★</div>
+                                <p class="mt-3 text-[15px] leading-relaxed text-slate-200">“Clean UI, clear pricing, and the doorstep delivery was perfect for my trip.”</p>
+                                <div class="mt-4 flex items-center gap-3"><img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?q=80&w=100" alt=""><div><p class="text-sm font-semibold">Sofia L.</p><p class="text-xs text-slate-400">Miami</p></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="py-16 sm:py-24">
+            <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+                <h2 class="text-[28px] sm:text-[36px] font-extrabold tracking-tight text-center">Frequently asked</h2>
+                <div class="mt-8 divide-y divide-slate-200 border-y border-slate-200 bg-white rounded-3xl shadow-soft overflow-hidden">
+                    <details class="group p-6 open:bg-slate-50/60">
+                        <summary class="flex cursor-pointer list-none items-center justify-between font-semibold">What do I need to rent?<span class="transition group-open:rotate-180">⌄</span></summary>
+                        <p class="mt-3 text-[14px] text-slate-600">Valid driver's license, credit/debit card, and you must meet the minimum age for the vehicle class (usually 21+).</p>
+                    </details>
+                    <details class="group p-6 open:bg-slate-50/60">
+                        <summary class="flex cursor-pointer list-none items-center justify-between font-semibold">Is insurance included?<span class="transition group-open:rotate-180">⌄</span></summary>
+                        <p class="mt-3 text-[14px] text-slate-600">Basic collision and liability options are included. You can add full coverage at checkout.</p>
+                    </details>
+                    <details class="group p-6 open:bg-slate-50/60">
+                        <summary class="flex cursor-pointer list-none items-center justify-between font-semibold">Can I swap a lease car?<span class="transition group-open:rotate-180">⌄</span></summary>
+                        <p class="mt-3 text-[14px] text-slate-600">Yes, on eligible plans you can swap after 6 months with a small fee.</p>
+                    </details>
+                    <details class="group p-6 open:bg-slate-50/60">
+                        <summary class="flex cursor-pointer list-none items-center justify-between font-semibold">Do you deliver?<span class="transition group-open:rotate-180">⌄</span></summary>
+                        <p class="mt-3 text-[14px] text-slate-600">Doorstep delivery and pickup available in select cities for rentals and leases.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="pb-20">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="relative overflow-hidden rounded-[32px] border border-slate-200 bg-gradient-to-br from-slate-900 to-slate-800 p-8 sm:p-12 text-white shadow-soft-lg">
+                    <div class="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-violet-500/20 blur-3xl"></div>
+                    <div class="relative grid lg:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-[26px] sm:text-[34px] font-extrabold tracking-tight">Ready to drive?</h3>
+                            <p class="mt-2 text-slate-300 max-w-lg">Get instant prices for rental or lease. No hidden fees. Cancel anytime before pick-up.</p>
+                        </div>
+                        <div class="flex gap-3 lg:justify-end">
+                            <a href="#book" class="h-12 px-6 grid place-items-center rounded-xl bg-white text-slate-900 font-semibold hover:bg-slate-100">Start booking</a>
+                            <a href="tel:+18005551234" class="h-12 px-6 grid place-items-center rounded-xl bg-white/10 border border-white/20 font-semibold hover:bg-white/15">Talk to sales</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-slate-900 text-white grid place-items-center">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 11l1.5-4.5h11L19 11m-14 0v6h2v-2h10v2h2v-6M7.5 16.5h.01M16.5 16.5h.01M4 11h16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                    </div>
+                    <span class="font-extrabold tracking-tight">DRIVEX</span>
+                </div>
+                <p class="text-[13px] text-slate-500">© 2025 DRIVEX Inc. All rights reserved.</p>
+                <div class="flex items-center gap-5 text-[13px] text-slate-600">
+                    <a href="#" class="hover:text-slate-900">Privacy</a>
+                    <a href="#" class="hover:text-slate-900">Terms</a>
+                    <a href="#" class="hover:text-slate-900">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile sticky CTA -->
+    <div class="sm:hidden fixed bottom-3 inset-x-3 z-40">
+        <a href="#book" class="h-[52px] w-full grid place-items-center rounded-2xl bg-slate-900 text-white font-semibold shadow-soft-lg border border-slate-800">Find a car</a>
+    </div>
+
+    <script>
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // Tabs
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const rentalForm = document.getElementById('rentalForm');
+        const leaseForm = document.getElementById('leaseForm');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('bg-white','shadow-sm','text-slate-900'));
+                tabBtns.forEach(b => b.classList.add('text-slate-600'));
+                btn.classList.add('bg-white','shadow-sm','text-slate-900');
+                btn.classList.remove('text-slate-600');
+                const isRental = btn.dataset.tab === 'rental';
+                rentalForm.classList.toggle('hidden', !isRental);
+                leaseForm.classList.toggle('hidden', isRental);
+                updatePrices();
+            });
+        });
+
+        // Dates default
+        const today = new Date();
+        const tomorrow = new Date(Date.now() + 86400000*2);
+        const fmt = d => d.toISOString().split('T')[0];
+        document.getElementById('pickupDate').value = fmt(today);
+        document.getElementById('returnDate').value = fmt(tomorrow);
+
+        // Lease estimate
+        const leaseTerm = document.getElementById('leaseTerm');
+        const leaseEstimate = document.getElementById('leaseEstimate');
+        function calcLease() {
+            const base = 529;
+            const term = parseInt(leaseTerm.value);
+            const price = Math.round(base * (24/term) * 0.95 + 40);
+            leaseEstimate.textContent = `$${price}/mo`;
+        }
+        leaseTerm?.addEventListener('change', calcLease);
+        calcLease();
+
+        // Cars data
+        const cars = [
+            { name:'Tesla Model 3', type:'Electric', tag:'Electric • Auto', img:'https://images.unsplash.com/photo-1617704548623-340376564e68?q=80&w=1200&auto=format', day:69, month:429, rating:4.9 },
+            { name:'BMW X5', type:'SUV', tag:'SUV • Auto', img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1200&auto=format', day:99, month:799, rating:4.8 },
+            { name:'Toyota Corolla', type:'Sedan', tag:'Sedan • Auto', img:'https://images.unsplash.com/photo-1621007696150-44c0c06bc1b6?q=80&w=1200&auto=format', day:39, month:299, rating:4.7 },
+            { name:'Jeep Wrangler', type:'SUV', tag:'SUV • 4x4', img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format', day:89, month:699, rating:4.8 },
+            { name:'Porsche Taycan', type:'Luxury', tag:'Electric • Luxury', img:'https://images.unsplash.com/photo-1616788494707-1e2c2c0b76c8?q=80&w=1200&auto=format', day:189, month:1299, rating:4.9 },
+            { name:'Audi A4', type:'Sedan', tag:'Sedan • Auto', img:'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?q=80&w=1200&auto=format', day:75, month:549, rating:4.7 },
+        ];
+
+        const carGrid = document.getElementById('carGrid');
+        let currentFilter = 'all';
+        let isLeaseMode = false;
+
+        function updatePrices() {
+            isLeaseMode = !rentalForm.classList.contains('hidden') ? false : true;
+            renderCars();
+        }
+
+        function renderCars() {
+            carGrid.innerHTML = '';
+            cars.filter(c => currentFilter==='all' || c.type===currentFilter || (currentFilter==='Electric' && c.tag.includes('Electric'))).forEach(car => {
+                const price = isLeaseMode ? `$${car.month}/mo` : `$${car.day}/day`;
+                const sub = isLeaseMode ? 'Lease • 24 mo' : 'Rental • Free cancel';
+                const card = document.createElement('article');
+                card.className = 'group bg-white rounded-[24px] border border-slate-200 overflow-hidden shadow-sm hover:shadow-soft-lg hover:-translate-y-0.5 transition';
+                card.innerHTML = `
+                    <div class="relative aspect-[16/10] overflow-hidden">
+                        <img src="${car.img}" alt="${car.name}" class="w-full h-full object-cover group-hover:scale-[1.03] transition duration-500" loading="lazy">
+                        <div class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur text-[11px] font-semibold border border-white">${car.tag}</div>
+                        <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-slate-900 text-white text-[11px] font-semibold flex items-center gap-1">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>${car.rating}
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <div class="flex items-start justify-between gap-3">
+                            <h3 class="font-bold text-[17px] leading-tight">${car.name}</h3>
+                            <div class="text-right">
+                                <div class="text-[20px] font-extrabold tracking-tight">${price}</div>
+                                <div class="text-[11px] text-slate-500 -mt-0.5">${sub}</div>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center gap-2">
+                            <button class="flex-1 h-10 rounded-xl bg-slate-900 text-white text-[14px] font-semibold hover:bg-slate-800">Book now</button>
+                            <button class="h-10 w-10 grid place-items-center rounded-xl border border-slate-200 hover:bg-slate-50" title="Save">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                carGrid.appendChild(card);
+            });
+        }
+        renderCars();
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('bg-slate-900','text-white');
+                    b.classList.add('bg-white','border','border-slate-200');
+                });
+                btn.classList.add('bg-slate-900','text-white');
+                btn.classList.remove('bg-white','border','border-slate-200');
+                currentFilter = btn.dataset.filter;
+                renderCars();
+            });
+        });
+
+        // Testimonials slider
+        const track = document.getElementById('tTrack');
+        const tPrev = document.getElementById('tPrev');
+        const tNext = document.getElementById('tNext');
+        let tIndex = 0;
+        function updateSlider() {
+            const width = track.clientWidth;
+            const card = track.children[0].getBoundingClientRect().width + 16;
+            track.style.transform = `translateX(-${tIndex * card}px)`;
+        }
+        tNext.addEventListener('click', () => { tIndex = Math.min(tIndex+1, 2); updateSlider(); });
+        tPrev.addEventListener('click', () => { tIndex = Math.max(tIndex-1, 0); updateSlider(); });
+        window.addEventListener('resize', updateSlider);
+
+        // Form submit demo
+        rentalForm.addEventListener('submit', e => { e.preventDefault(); document.getElementById('cars').scrollIntoView({behavior:'smooth'}); });
+        leaseForm.addEventListener('submit', e => { e.preventDefault(); document.getElementById('cars').scrollIntoView({behavior:'smooth'}); });
+    </script>
+</body>
+</html>
